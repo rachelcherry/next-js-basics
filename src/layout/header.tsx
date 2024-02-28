@@ -6,6 +6,9 @@ const { Header } = Layout;
 const CustomHeader = () => {
   // You'll need to edit this array
   const menuItems: { key: string; label: string; href: string }[] = [
+      { key: "0", label: "Home", href: "/" },
+      { key: "1", label: "News", href: "/news" },
+      { key: "2", label: "About", href: "/about" },
     // each menu item must contain:
     // key: unique string (should be integer-like, e.g. '0' or '1')
     // label: string
@@ -23,9 +26,35 @@ const CustomHeader = () => {
     router.push(menuItems[parsedKey].href);
   };
 
+
   // Start editing here
 
-  return <Header style={{ display: "flex", alignItems: "center" }}></Header>;
+  return (
+    <>
+  <Header style={{ display: "flex", alignItems: "center" }}></Header>
+  <Menu 
+  selectedKeys={[selectedKey]}
+  onClick={handleClick}
+  mode="horizontal"
+  theme="dark"
+  style={{width: "100%"}}
+  >
+  {menuItems.map((item) => (
+    <Menu.Item key={item.key}
+    style={
+    {
+background:selectedKey===item.key? "#52C41A" : "transparent",
+
+    }
+    
+    }
+    
+    
+    >{item.label}</Menu.Item>
+  ))}
+</Menu>
+  </>
+  )
 };
 
 export default CustomHeader;
