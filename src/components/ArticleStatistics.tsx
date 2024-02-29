@@ -48,16 +48,17 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
     `Latest: ${dateRange[1]}`
   
   ];
+  const featured = articles.filter(article => article.featured);
   const numFeat = [
-    <Typography.Text>{articles.length}</Typography.Text>
+    <Typography.Text>{featured.length}</Typography.Text>
   ]
+
   return (
   <div>
   
 
   <Row gutter={16}>
         <Col span={8}>
-        articles : Article
           <List
                 header= {<p><b>Unique News Sources</b></p>}
           bordered
@@ -94,7 +95,7 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
             dataSource={numFeat}
             renderItem={(v) => (
               <List.Item>
-                <Typography.Text>{v}</Typography.Text>
+                <Typography.Text>Count: {v}</Typography.Text>
               </List.Item>
             )}
           />
