@@ -7,16 +7,18 @@ import ArticleTable from "@/components/ArticleTable";
 import ArticleStatistics from "@/components/ArticleStatistics";
 
 const NewsPage: React.FC = () => {
+  const [isTable, setIsTable] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [allArticles, setAllArticles] = useState(0);
+
   const [articles, setArticles] = useState<any[]>([]);
   const [wait, setWait] = useState(true);
   useEffect(() => {
     // declare the async data fetching function
     const fetchData = async () => {
       try {
-        const offset = 0
+        const offset = 0;
         const limit = 10;
         const data = await fetch(`https://api.spaceflightnewsapi.net/v4/articles?offset=${offset}&limit=${limit}&_sort=published_at:desc`);
         const json = await data.json();
@@ -35,13 +37,32 @@ const NewsPage: React.FC = () => {
 
       // When a piece of state needs to trigger a re-render (or useEffect re-fire)
       // it should be included in this dependency array.
-  }, []);
+  }, [currentPage, pageSize]);
+
+   
+  const onToggleView = (checked: boolean) => {
+    setIsTable(checked);
+    setCurrentPage(1); // Reset current page to 1 when toggling view
+  };
+
   
 
   return (
     <div style={{ width: "100%" }}>
-  <Typography.Title level={2}>Articles</Typography.Title>
-      {<ArticleList articleList={articles} wait={wait} />}
+      <span>View as: </span>
+      <Switch
+        defaultChecked={isTable}
+        onChange={onToggleView} 
+        checkedChildren="Table"
+        unCheckedChildren="Grid"
+      />
+      <span> (Switch between Table and Grid view)</span>
+      <Divider />
+      <ArticleStatistics articles={articles}/>
+      <Typography.Title level={2}>Articles</Typography.Title>
+      {isTable ? <ArticleTable wait={wait} articles={articles} /> : <ArticleList articleList={articles} wait={wait} />}
+
+   
     </div>
   );
 };
