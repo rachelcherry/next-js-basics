@@ -18,8 +18,8 @@ const NewsPage: React.FC = () => {
     // declare the async data fetching function
     const fetchData = async () => {
       try {
-        const offset = 0;
-        const limit = 10;
+        const offset = (currentPage - 1) * pageSize;
+        const limit = pageSize;
         const data = await fetch(`https://api.spaceflightnewsapi.net/v4/articles?offset=${offset}&limit=${limit}&_sort=published_at:desc`);
         const json = await data.json();
         setArticles(json.results);
@@ -39,12 +39,19 @@ const NewsPage: React.FC = () => {
       // it should be included in this dependency array.
   }, [currentPage, pageSize]);
 
+  const handlePageChange = (page: number, pageSize?: number) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
    
   const onToggleView = (checked: boolean) => {
     setIsTable(checked);
     setCurrentPage(1); // Reset current page to 1 when toggling view
   };
-
+  const handlePageSizeChange = (current: number, size: number) => {
+    setPageSize(size);
+    setCurrentPage(current);
+  };
   
 
   return (
@@ -62,7 +69,18 @@ const NewsPage: React.FC = () => {
       <Typography.Title level={2}>Articles</Typography.Title>
       {isTable ? <ArticleTable wait={wait} articles={articles} /> : <ArticleList articleList={articles} wait={wait} />}
 
-   
+      <Divider />
+
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Pagination
+      showSizeChanger
+      current={currentPage}
+      pageSize={pageSize}
+      total={allArticles}
+      onChange={handlePageChange} // handlePageChange
+      onShowSizeChange={handlePageSizeChange} // handlePageSizeChange
+    />
+      </div>
     </div>
   );
 };
