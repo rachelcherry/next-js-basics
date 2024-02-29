@@ -7,6 +7,7 @@ interface ArticleStatisticsProps {
 }
 
 const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
+  
   /**
    * This component generates the following statistics:
    * 1. Unique news sources
@@ -42,8 +43,70 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
       )
     ).toLocaleDateString(),
   ];
+  const dateTime = [
+    `Earliest: ${dateRange[0]}`,
+    `Latest: ${dateRange[1]}`
+  
+  ];
+  const numFeat = [
+    <Typography.Text>{articles.length}</Typography.Text>
+  ]
+  return (
+  <div>
+  
 
-  return <div>Build me</div>;
+  <Row gutter={16}>
+        <Col span={8}>
+        articles : Article
+          <List
+                header= {<p><b>Unique News Sources</b></p>}
+          bordered
+            size="small"
+            dataSource={uniqueSources}
+            renderItem={(v) => (
+              <List.Item>
+                <Typography.Text>{v}</Typography.Text>
+              </List.Item>
+            )}
+          />
+        </Col>
+        <Col span={8}>
+        
+        <List
+        header= {<p><b>Date Range of Articles</b></p>}
+          bordered
+            size="small"
+            dataSource={dateTime}
+            renderItem={(v) => (
+              <List.Item>
+                <Typography.Text>{v}</Typography.Text>
+              </List.Item>
+            )}
+          />
+
+        </Col>
+      
+        <Col span={8}>
+        <List
+        header= {<p><b>Number of Featured Articles</b></p>}
+          bordered
+            size="small"
+            dataSource={numFeat}
+            renderItem={(v) => (
+              <List.Item>
+                <Typography.Text>{v}</Typography.Text>
+              </List.Item>
+            )}
+          />
+         
+        </Col>
+      </Row>
+  
+  
+  </div>
+  
+  
+    )
 };
 
 export default ArticleStatistics;
