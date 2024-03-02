@@ -39,7 +39,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         <img src={article.image_url} onError={handleError} alt={article.title} />)}
         onClick={handleClick} // upon clicking the article, open a new page that links to the article
         key={article.id}
-        hoverable // make the article cards hoverable
+        hoverable // make the article cards hoverable on the page
       >
         <Divider />
         <h3><u>{article.title}</u></h3> {/* in the body of the card, put the article title*/}
