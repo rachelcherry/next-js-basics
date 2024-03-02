@@ -11,17 +11,18 @@ interface ArticleListProps {
 
 const ArticleList: React.FC<ArticleListProps> = ({ articleList, wait }) => (
   <div>
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 24]} /* creates a table */> 
     {wait ? (
     //  <Col span={24}>
       <Skeleton active />
    // </Col>
     ) : (
       articleList.map((article) => (
-        <Col key={article.id} md={8} >
+        /* maps each article to the list called articles */
+        <Col key={article.id} md={8} /* only includes the article id */> 
         <ArticleCard
-          key={article.id}
-          article={article}
+          key={article.id} /* the card will have article id */
+          article={article} /* set the article to be the current article being mapped*/
         />
          </Col>
       ))

@@ -2,12 +2,12 @@ import React from "react";
 import { Layout } from "antd";
 const { Footer } = Layout;
 
-const CustomFooter = () => {
+const CustomFooter = () => { /* creates a footer tag for the page */
 
   return (
-    <Footer style={{ textAlign: "center", backgroundColor: "#333", color: "white"}}>
-       &copy; BU Spark! All Rights Reserved.
-    </Footer>
+    <Footer /* creates footer that looks like example */ style={{ textAlign: "center", backgroundColor: "#333", color: "white"}}>
+       Spark! &copy;2023 Created by Spark!  
+    </Footer >
   );
 };
 

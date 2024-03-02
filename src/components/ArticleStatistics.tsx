@@ -44,27 +44,27 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
     ).toLocaleDateString(),
   ];
   const dateTime = [
-    `Earliest: ${dateRange[0]}`,
-    `Latest: ${dateRange[1]}`
+    `Earliest: ${dateRange[0]}`, /* sets the starting date for each page*/
+    `Latest: ${dateRange[1]}` /* sets the latest date for each page*/
   
   ];
-  const featured = articles.filter(article => article.featured);
+  const featured = articles.filter(article => article.featured); /* filter for the articles that are labeled as featured*/
   const numFeat = [
-    <Typography.Text>{featured.length}</Typography.Text>
+    <Typography.Text>{featured.length}</Typography.Text> /* show how many featured articles are on that page*/
   ]
 
   return (
   <div>
   
 
-  <Row gutter={16}>
-        <Col span={8}>
+  <Row gutter={16} /* create a table */>
+        <Col span={8}> 
           <List
-                header= {<p><b>Unique News Sources</b></p>}
+                header= {<p><b>Unique News Sources</b></p>} /* title the table Unique News Sources*/
           bordered
             size="small"
             dataSource={uniqueSources}
-            renderItem={(v) => (
+            renderItem={(v) => ( /* render all of the news sources that are called in the unique sources method  and list them in a table*/
               <List.Item>
                 <Typography.Text>{v}</Typography.Text>
               </List.Item>
@@ -78,7 +78,7 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
           bordered
             size="small"
             dataSource={dateTime}
-            renderItem={(v) => (
+            renderItem={(v) => ( /*  render the starting time and latest time out of all of the articles on the page and list them in a table*/
               <List.Item>
                 <Typography.Text>{v}</Typography.Text>
               </List.Item>
@@ -93,7 +93,7 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
           bordered
             size="small"
             dataSource={numFeat}
-            renderItem={(v) => (
+            renderItem={(v) => ( /* render all of the articles that fall into the featured type and list the count of them in the table*/
               <List.Item>
                 <Typography.Text>Count: {v}</Typography.Text>
               </List.Item>

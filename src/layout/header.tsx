@@ -6,9 +6,9 @@ const { Header } = Layout;
 const CustomHeader = () => {
   // You'll need to edit this array
   const menuItems: { key: string; label: string; href: string }[] = [
-      { key: "0", label: "Home", href: "/" },
-      { key: "1", label: "News", href: "/news" },
-      { key: "2", label: "About", href: "/about" },
+    { key: "0", label: "Home", href: "/" }, /* creates keys with label for home page*/
+    { key: "1", label: "News", href: "/news" }, /* creates keys with label for news page*/
+    { key: "2", label: "About", href: "/about" }, /* creates keys with label for about page*/
     // each menu item must contain:
     // key: unique string (should be integer-like, e.g. '0' or '1')
     // label: string
@@ -26,35 +26,41 @@ const CustomHeader = () => {
     router.push(menuItems[parsedKey].href);
   };
 
-
   // Start editing here
 
   return (
     <>
-  <Header style={{ display: "flex", alignItems: "center" }}></Header>
-  <Menu 
-  selectedKeys={[selectedKey]}
-  onClick={handleClick}
-  mode="horizontal"
-  theme="dark"
-  style={{width: "100%"}}
-  >
-  {menuItems.map((item) => (
-    <Menu.Item key={item.key}
-    style={
-    {
-background:selectedKey===item.key? "#52C41A" : "transparent",
-
-    }
-    
-    }
-    
-    
-    >{item.label}</Menu.Item>
-  ))}
-</Menu>
-  </>
-  )
+      <Header /* adds a header tag and styles in accordingly*/
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "0",
+          height: "100%",
+          lineHeight: "60px",
+        }}
+      ></Header> 
+      <div />
+      <Menu /*creates a menu tag that can go from page to page */
+        selectedKeys={[selectedKey]}/* gets the menu items*/
+        onClick={handleClick} /* call the function to switch between pages */
+        mode="horizontal"
+        theme="dark"
+        style={{ width: "100%" }}
+      >
+        {menuItems.map((item) => ( /* map the items in the menu to the page*/
+          <Menu.Item
+            key={item.key}
+            style={{
+              background: selectedKey === item.key ? "#52C41A" : "transparent",
+            }}
+          >
+            {item.label}
+          </Menu.Item>
+        ))}
+      </Menu>
+    </>
+  );
 };
 
 export default CustomHeader;

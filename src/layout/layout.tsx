@@ -8,7 +8,7 @@ const { Content, Footer } = Layout;
 const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout className="layout" style={{ minHeight: "100vh" }}>
-      <CustomHeader />
+      <CustomHeader /* add the header component *//> 
       <Content style={{ padding: "0 50px", marginTop: 64 }}>
         <div
           className="site-layout-content"
@@ -16,7 +16,7 @@ const LayoutComponent = ({ children }: { children: React.ReactNode }) => {
         >
           {children}
         </div>
-        <CustomFooter />
+        <CustomFooter /* add the footer component*//> 
       </Content>
     </Layout>
   );

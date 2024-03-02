@@ -17,7 +17,7 @@ const ArticleTable: React.FC<ArticleTableProps> = ({ articles, wait }) => {
    *
    */
   
-  const columns = [
+  const columns = [ /* This creates a table with columns title, news soucr, and published at*/
     {
       title: 'Title',
       dataIndex: 'title',
@@ -32,22 +32,22 @@ const ArticleTable: React.FC<ArticleTableProps> = ({ articles, wait }) => {
       title: 'Published At',
       dataIndex: 'published_at',
       key: 'published_at',
-      render: (published_at: string) => {
-        const published_date = new Date(published_at);
-        return published_date.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+      render: (published_at: string) => { /* render the date for each article*/
+        const published = new Date(published_at); /* call the Date component*/
+        return published.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "numeric", minute:"numeric" }); /* convert the date to day, month, year, and time*/
       }
     },
   ];
     const mapping = articles.map((article) => ({
-     key : article.id, 
-      title : article.title,
-      news_source: article.news_site,
-      published_at: article.published_at,
+     key : article.id, /* for each article, map the id*/
+      title : article.title, /* for each article, map the title*/
+      news_source: article.news_site,/* for each article, map the site where the news came from*/
+      published_at: article.published_at,/* for each article, map the date it was published*/
 
   }))
   return (
     <>
-    <Table dataSource={mapping} columns = {columns} loading={wait} pagination={false} />
+    <Table dataSource={mapping} columns = {columns} loading={wait} pagination={false} /*  create the table and ensure it does not put its own pagination*//> 
     </>
   )
 
