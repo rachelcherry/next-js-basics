@@ -19,9 +19,9 @@ export default function About() {
           justifyContent: "flex-start",
         }}
       > 
-        <Typography.Title /* information about me */>About the Author</Typography.Title>
-        <Typography.Paragraph>
-          My name is Rachel Cherry, and I am a current Junior at Boston Unviersity studying Computer Science. I am intended to graduate in 2025. I am interested in Software Engineering and love to code!
+        <Typography.Title >About the Author</Typography.Title> {/* information about me */}
+        <Typography.Paragraph> {/* paragraph that contains the information */}
+          My name is Rachel Cherry, and I am a current Junior at Boston Unviersity studying Computer Science. I am from Baltimore, Maryland, and I am intended to graduate from BU in 2025. I am interested in Software Engineering and love to code! I am currently taking CS 391 and designed this website about Space. 
         </Typography.Paragraph> 
         <div 
         style={{
