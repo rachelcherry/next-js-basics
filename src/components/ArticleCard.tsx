@@ -41,8 +41,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         key={article.id}
         hoverable // make the article cards hoverable on the page
       >
-        <Divider />
         <h3><u>{article.title}</u></h3> {/* in the body of the card, put the article title*/}
+        <Divider /> {/*creates divider between sections */}
         <p>{article.summary}</p> {/* in the body of the card, put the article summary under the title*/}
       </Card>
     </div>
