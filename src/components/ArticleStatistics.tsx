@@ -48,7 +48,9 @@ const ArticleStatistics: React.FC<ArticleStatisticsProps> = ({ articles }) => {
     `Latest: ${dateRange[1]}` /* sets the latest date for each page*/
   
   ];
-  const featured = articles.filter(article => article.featured); /* filter for the articles that are labeled as featured*/
+  const featured = articles.filter(article => 
+    article.featured
+    ); /* filter for the articles that are labeled as featured*/
   const numFeat = [
     <Typography.Text>{featured.length}</Typography.Text> /* show how many featured articles are on that page*/
   ]
